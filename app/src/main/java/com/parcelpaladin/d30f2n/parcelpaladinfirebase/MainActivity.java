@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(firebaseAuth.getCurrentUser() != null)
         {
+            //user already logged in
             finish();
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
