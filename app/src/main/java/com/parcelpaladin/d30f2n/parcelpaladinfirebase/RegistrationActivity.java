@@ -16,15 +16,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
+public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
-
-    private Button buttonSignIn;
+    private Button buttonRegister;
+    private EditText editTextName;
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private TextView textViewSignUp;
+    private TextView textViewSignIn;
+
+    private DatabaseReference mDatabase;
 
     private ProgressDialog progressDialog;
 
@@ -33,32 +37,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registration);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         if(firebaseAuth.getCurrentUser() != null)
         {
-            //profile activity here
+            //user already logged in
             finish();
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
 
+
         progressDialog = new ProgressDialog(this);
+
+        buttonRegister = (Button) findViewById(R.id.buttonRegister);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonSignIn = (Button) findViewById(R.id.buttonSignin);
-        textViewSignUp = (TextView) findViewById(R.id.textViewSignUp);
+        editTextName = (EditText) findViewById(R.id.editTextName);
 
+        textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
 
-
-        buttonSignIn.setOnClickListener(this);
-        textViewSignUp.setOnClickListener(this);
-
+        buttonRegister.setOnClickListener(this);
+        textViewSignIn.setOnClickListener(this);
     }
 
-    private void userLogin()
+    private void registerUser()
     {
+        final String name = editTextName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
@@ -78,17 +84,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.setMessage("Registering...");
         progressDialog.show();
 
-        firebaseAuth.signInWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
-
                         if(task.isSuccessful())
                         {
-                            //start profile activity
+                            Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            mDatabase = FirebaseDatabase.getInstance().getReference("users");
+                            mDatabase.child(user.getUid());
+                            UserInformation userInformation = new UserInformation(name);
+                            mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
+                            mDatabase.child("Name").setValue(name);
+                            mDatabase.child("Email").setValue(user.getEmail());
+                            mDatabase.child("trackingNumbers");
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        }
+                        else
+                        {
+                            Toast.makeText(RegistrationActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -96,15 +112,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onClick(View v) {
-        if(v==buttonSignIn)
+    public void onClick(View view) {
+        if(view==buttonRegister)
         {
-            userLogin();
+            registerUser();
         }
-        if(v == textViewSignUp)
+        if(view==textViewSignIn)
         {
-            finish();
+            //Will open login activity here
             startActivity(new Intent(this, MainActivity.class));
         }
+
     }
 }

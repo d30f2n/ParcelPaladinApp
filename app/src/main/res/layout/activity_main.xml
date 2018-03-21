@@ -17,21 +17,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="User Registration"
-            android:id="@+id/userReg"
+            android:text="User Login"
+            android:id="@+id/userLogin"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
         <EditText
 
-            android:layout_margin="15dp"
-            android:inputType="textPersonName"
-            android:hint="Enter your name"
-            android:id="@+id/editTextName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-        <EditText
             android:layout_margin="15dp"
             android:inputType="textEmailAddress"
             android:hint="Enter your email"
@@ -42,21 +33,21 @@
         <EditText
             android:layout_margin="15dp"
             android:inputType="textPassword"
-            android:hint="Create a password"
+            android:hint="Enter your password"
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/buttonRegister"
+            android:id="@+id/buttonSignin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register" />
+            android:text="Sign in" />
 
         <TextView
             android:textAlignment="center"
-            android:text="Already registered? Sign in here"
-            android:id="@+id/textViewSignIn"
+            android:text="Haven't registered yet? Sign up here"
+            android:id="@+id/textViewSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
