@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">ParcelPaladinFirebase</string>
+    <string name="app_name">Parcel Paladin</string>
+    <string name="welcome">Welcome to Parcel Paladin!</string>
+    <string name="loginText">Please log in:</string>
+    <string name="loginEmail">Email</string>
+    <string name="loginPassword">Password</string>
+    <string name="SignIn">Sign in</string>
+    <string name="noAccount">Don\'t have an account? Sign in here!</string>
+    <string name="appLogo">appLogo</string>
+    <!--<string name=""></string>-->
+
 </resources>
