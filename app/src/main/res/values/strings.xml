@@ -5,8 +5,24 @@
     <string name="loginEmail">Email</string>
     <string name="loginPassword">Password</string>
     <string name="SignIn">Sign in</string>
-    <string name="noAccount">Don\'t have an account? Sign in here!</string>
+    <string name="noAccount">Don\'t have an account? Sign up here!</string>
+    <string name="yesAccount">Have an account already? Sign in here!</string>
     <string name="appLogo">appLogo</string>
+
+    <string name="userReg">User Registration</string>
+    <string name="name">Name</string>
+    <string name="signUp">Sign up</string>
+    <string name="regName">Please enter your full name</string>
+    <string name="regEmail">Please enter your email</string>
+    <string name="regPassword">Create a password</string>
+    <string name="regPasswordConfirm">Confirm your password</string>
+    <string name="startButton">Let\'s start!</string>
+
+    <string name="regWelcome">Welcome!</string>
+    <string name="regIntro">Thanks for setting up your account! Let\'s start off with some basic account info.</string>
+    <!--<string name=""></string>-->
+    <!--<string name=""></string>-->
+    <!--<string name=""></string>-->
     <!--<string name=""></string>-->
 
 </resources>

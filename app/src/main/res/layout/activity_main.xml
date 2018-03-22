@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.parcelpaladin.d30f2n.parcelpaladinfirebase.MainActivity">
+    tools:context="com.parcelpaladin.d30f2n.parcelpaladinfirebase.MainActivity"
+    android:background="@drawable/gradient">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,13 +23,13 @@
 
         <ImageView
             android:id="@+id/imageViewLogo"
-            android:layout_below="@id/textViewWelcome"
-            android:layout_centerHorizontal="true"
             android:layout_width="155dp"
             android:layout_height="168dp"
+            android:layout_below="@id/textViewWelcome"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:src="@drawable/pplogo"
-            android:contentDescription="@string/appLogo" />
+            android:contentDescription="@string/appLogo"
+            android:src="@drawable/pplogo" />
 
         <TextView
             android:layout_below="@id/imageViewLogo"
@@ -80,6 +81,15 @@
             android:layout_marginBottom="24dp"
             android:text="@string/noAccount"
             android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <ProgressBar
+            android:id="@+id/progressLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/textViewSignUp"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_in"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
 
     </RelativeLayout>
 

@@ -22,10 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button buttonRegister;
-    private EditText editTextName;
+    private TextView textViewRegister;
+    private EditText editTextFullName;
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private EditText editTextConfirmPassword;
     private TextView textViewSignIn;
 
     private DatabaseReference mDatabase;
@@ -33,6 +34,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,33 +53,58 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
         progressDialog = new ProgressDialog(this);
 
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
+        textViewRegister = (TextView) findViewById(R.id.textViewRegister);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        editTextName = (EditText) findViewById(R.id.editTextName);
-
+        editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
+        editTextFullName = (EditText) findViewById(R.id.editTextFullName);
         textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
 
-        buttonRegister.setOnClickListener(this);
+        textViewRegister.setOnClickListener(this);
         textViewSignIn.setOnClickListener(this);
+
+
     }
+
 
     private void registerUser()
     {
-        final String name = editTextName.getText().toString().trim();
+        final String name = editTextFullName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        String passwordConfirm = editTextConfirmPassword.getText().toString().trim();
 
+        if(!password.equals(passwordConfirm))
+        {
+            Toast.makeText(this, "Your passwords don't match.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(TextUtils.isEmpty(name))
+        {
+            Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(TextUtils.isEmpty(email))
         {
             //email is empty
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show();
             return;
         }
         if(TextUtils.isEmpty(password))
         {
             //password is empty
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please create a password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(TextUtils.isEmpty(password))
+        {
+            //password is empty
+            Toast.makeText(this, "Please confirm your password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(TextUtils.getTrimmedLength(password)<6)
+        {
+            Toast.makeText(this, "Your password is too short", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -113,7 +140,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        if(view==buttonRegister)
+        if(view==textViewRegister)
         {
             registerUser();
         }
