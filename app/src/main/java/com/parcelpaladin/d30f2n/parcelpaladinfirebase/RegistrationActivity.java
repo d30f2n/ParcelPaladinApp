@@ -1,14 +1,13 @@
 package com.parcelpaladin.d30f2n.parcelpaladinfirebase;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,10 +27,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private EditText editTextPassword;
     private EditText editTextConfirmPassword;
     private TextView textViewSignIn;
+    private ProgressBar progressBar;
 
     private DatabaseReference mDatabase;
-
-    private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
 
@@ -50,9 +48,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
 
-
-        progressDialog = new ProgressDialog(this);
-
         textViewRegister = (TextView) findViewById(R.id.textViewRegister);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
@@ -60,19 +55,20 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         editTextFullName = (EditText) findViewById(R.id.editTextFullName);
         textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressRegister);
+        progressBar.setVisibility(View.INVISIBLE);
+
         textViewRegister.setOnClickListener(this);
         textViewSignIn.setOnClickListener(this);
-
-
     }
 
 
     private void registerUser()
     {
         final String name = editTextFullName.getText().toString().trim();
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
-        String passwordConfirm = editTextConfirmPassword.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
+        final String password = editTextPassword.getText().toString().trim();
+        final String passwordConfirm = editTextConfirmPassword.getText().toString().trim();
 
         if(!password.equals(passwordConfirm))
         {
@@ -108,8 +104,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             return;
         }
 
-        progressDialog.setMessage("Registering...");
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -118,20 +113,24 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                         if(task.isSuccessful())
                         {
                             Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            mDatabase = FirebaseDatabase.getInstance().getReference("users");
-                            mDatabase.child(user.getUid());
-                            UserInformation userInformation = new UserInformation(name);
-                            mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
-                            mDatabase.child("Name").setValue(name);
-                            mDatabase.child("Email").setValue(user.getEmail());
-                            mDatabase.child("trackingNumbers");
+//                            FirebaseUser user = firebaseAuth.getCurrentUser();
+//                            mDatabase = FirebaseDatabase.getInstance().getReference("users");
+//                            mDatabase.child(user.getUid());
+//                            UserInformation userInformation = new UserInformation(name);
+//                            mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
+//                            mDatabase.child("Name").setValue(name);
+//                            mDatabase.child("Email").setValue(user.getEmail());
+//                            mDatabase.child("trackingNumbers");
                             finish();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                            Intent intent = new Intent(getApplicationContext(), UserQRActivity.class);
+                            intent.putExtra("EMAIL", email);
+                            intent.putExtra("PASSWORD", password);
+                            startActivity(intent);
                         }
                         else
                         {
                             Toast.makeText(RegistrationActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
@@ -143,6 +142,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         if(view==textViewRegister)
         {
             registerUser();
+
         }
         if(view==textViewSignIn)
         {

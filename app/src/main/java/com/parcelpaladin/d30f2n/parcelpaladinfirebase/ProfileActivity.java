@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
-    private TextView textViewUserEmail;
     private Button buttonLogout;
 
     DatabaseReference databaseReference;
@@ -43,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-
+        TextView textViewUserEmail;
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
         textViewUserEmail.setText("Welcome " +user.getEmail());
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
