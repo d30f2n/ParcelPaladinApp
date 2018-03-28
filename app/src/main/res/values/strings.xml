@@ -29,6 +29,12 @@
     <string name="scanDone">When the box says \"User added,\" go ahead and press finish.</string>
     <string name="finish">Finish!</string>
     <string name="qrCodeImage">qrCodeImage</string>
+    <string name="AccountSyncWait">Please wait while we sync your account</string>
+    <string name="SyncSuccessful">Sync Successful!</string>
+    <!--<string name=""></string>-->
+    <!--<string name=""></string>-->
+    <!--<string name=""></string>-->
+    <!--<string name=""></string>-->
     <!--<string name=""></string>-->
 
 </resources>

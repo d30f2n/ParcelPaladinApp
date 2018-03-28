@@ -62,6 +62,30 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         textViewSignIn.setOnClickListener(this);
     }
 
+    private void fakeregister() {
+        final String email = "testing@test.com";
+        final String password = "testing";
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful())
+                        {
+                            Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                            finish();
+                            Intent intent = new Intent(getApplicationContext(), UserQRActivity.class);
+                            intent.putExtra("EMAIL", email);
+                            intent.putExtra("PASSWORD", password);
+                            startActivity(intent);
+                        }
+                        else
+                        {
+                            Toast.makeText(RegistrationActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                });
+    }
 
     private void registerUser()
     {
@@ -141,8 +165,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         if(view==textViewRegister)
         {
-            registerUser();
-
+            //SWITCH THESE FUNCTIONS FOR TESTING
+//            registerUser();
+            fakeregister();
         }
         if(view==textViewSignIn)
         {

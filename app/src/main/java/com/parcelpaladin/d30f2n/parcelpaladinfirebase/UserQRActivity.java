@@ -53,7 +53,7 @@ public class UserQRActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if(v == textViewFinish)
         {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, AccountSyncActivity.class));
         }
 
     }
