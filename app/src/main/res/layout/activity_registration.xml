@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.parcelpaladin.d30f2n.parcelpaladinfirebase.RegistrationActivity"
+    android:background="@drawable/gradient">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+
+
+        <TextView
+            android:id="@+id/welcomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/regWelcome"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+
+        <TextView
+            android:id="@+id/welcomeMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_below="@+id/welcomeTitle"
+            android:text="@string/regIntro"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+        <EditText
+            android:id="@+id/editTextFullName"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/editTextEmail"
+            android:inputType="textPersonName"
+            android:hint="@string/regName"/>
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_above="@id/editTextPassword"
+            android:inputType="textEmailAddress"
+            android:hint="@string/regEmail"/>
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/editTextConfirmPassword"
+            android:layout_marginTop="8dp"
+            android:inputType="textPassword"
+            android:hint="@string/regPassword"/>
+
+        <EditText
+            android:id="@+id/editTextConfirmPassword"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/textViewSignIn"
+            android:hint="@string/regPasswordConfirm"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/textViewSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yesAccount"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="84dp"
+            android:layout_marginTop="8dp"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textViewRegister"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/rectangle"
+            android:gravity="center"
+            android:text="@string/startButton"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="@string/userReg"-->
+            <!--android:id="@+id/userReg"-->
+            <!--android:textAppearance="@style/TextAppearance.AppCompat.Display2" />-->
+
+        <!--<EditText-->
+
+            <!--android:layout_margin="15dp"-->
+            <!--android:inputType="textPersonName"-->
+            <!--android:hint="@string/regName"-->
+            <!--android:id="@+id/editTextName"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+        <!--<EditText-->
+            <!--android:layout_margin="15dp"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:hint="@string/regEmail"-->
+            <!--android:id="@+id/editTextEmail"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <!--<EditText-->
+            <!--android:layout_margin="15dp"-->
+            <!--android:inputType="textPassword"-->
+            <!--android:hint="@string/regPassword"-->
+            <!--android:id="@+id/editTextPassword"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/buttonRegister"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/register" />-->
+
+        <!--<TextView-->
+            <!--android:textAlignment="center"-->
+            <!--android:text="@string/yesAccount"-->
+            <!--android:id="@+id/textViewSignIn"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+    <!--</LinearLayout>-->
+
+</android.support.constraint.ConstraintLayout>

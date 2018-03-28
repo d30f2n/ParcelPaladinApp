@@ -35,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if(firebaseAuth.getCurrentUser() == null)
         {
             finish();
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
         }
 
         editTextTracking = (EditText) findViewById(R.id.editTextTracking);
@@ -73,7 +73,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         {
             firebaseAuth.signOut();
             finish();
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
         }
 
         if(v == buttonSave)

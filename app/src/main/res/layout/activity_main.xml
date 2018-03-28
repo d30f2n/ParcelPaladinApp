@@ -4,62 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.parcelpaladin.d30f2n.parcelpaladinfirebase.MainActivity">
+    tools:context="com.parcelpaladin.d30f2n.parcelpaladinfirebase.MainActivity"
+    android:background="@drawable/gradient">
 
-    <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/textViewWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="User Registration"
-            android:id="@+id/userReg"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="16dp"
+            android:text="@string/welcome"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <EditText
-
-            android:layout_margin="15dp"
-            android:inputType="textPersonName"
-            android:hint="Enter your name"
-            android:id="@+id/editTextName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-        <EditText
-            android:layout_margin="15dp"
-            android:inputType="textEmailAddress"
-            android:hint="Enter your email"
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:layout_margin="15dp"
-            android:inputType="textPassword"
-            android:hint="Create a password"
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/buttonRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Register" />
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="155dp"
+            android:layout_height="168dp"
+            android:layout_below="@id/textViewWelcome"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/appLogo"
+            android:src="@drawable/pplogo" />
 
         <TextView
-            android:textAlignment="center"
-            android:text="Already registered? Sign in here"
-            android:id="@+id/textViewSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_below="@id/imageViewLogo"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/loginText"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_below="@id/textView2"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/loginEmail"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_below="@id/editTextEmail"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="@string/loginPassword"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/buttonSignIn"
+            android:layout_below="@id/editTextPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/SignIn" />
+
+        <TextView
+            android:id="@+id/textViewSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="24dp"
+            android:text="@string/noAccount"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <ProgressBar
+            android:id="@+id/progressLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/textViewSignUp"
+            android:indeterminate="true"
+            android:indeterminateTintMode="src_in"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

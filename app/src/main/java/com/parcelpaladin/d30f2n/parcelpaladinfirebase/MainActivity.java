@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -17,23 +18,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button buttonRegister;
-    private EditText editTextName;
+    private Button buttonSignIn;
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private TextView textViewSignIn;
-
-    private DatabaseReference mDatabase;
-
-    private ProgressDialog progressDialog;
+    private TextView textViewSignUp;
+    private ProgressBar progressBar;
 
     private FirebaseAuth firebaseAuth;
 
@@ -46,28 +38,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(firebaseAuth.getCurrentUser() != null)
         {
-            //user already logged in
+            //profile activity here
             finish();
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
 
-
-        progressDialog = new ProgressDialog(this);
-
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        editTextName = (EditText) findViewById(R.id.editTextName);
+        buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
+        textViewSignUp = (TextView) findViewById(R.id.textViewSignUp);
+        progressBar = (ProgressBar) findViewById(R.id.progressLogin);
 
-        textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
+        progressBar.setVisibility(View.INVISIBLE);
 
-        buttonRegister.setOnClickListener(this);
-        textViewSignIn.setOnClickListener(this);
+
+
+        buttonSignIn.setOnClickListener(this);
+        textViewSignUp.setOnClickListener(this);
+
     }
 
-    private void registerUser()
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    private void userLogin()
     {
-        final String name = editTextName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
@@ -84,30 +83,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        progressDialog.setMessage("Registering...");
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            Toast.makeText(MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            mDatabase = FirebaseDatabase.getInstance().getReference("users");
-                            mDatabase.child(user.getUid());
-                            UserInformation userInformation = new UserInformation(name);
-                            mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
-                            mDatabase.child("Name").setValue(name);
-                            mDatabase.child("Email").setValue(user.getEmail());
-                            mDatabase.child("trackingNumbers");
+                            //start profile activity
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         }
                         else
                         {
-                            Toast.makeText(MainActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(MainActivity.this, "Your email and/or password is incorrect. Try again.", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -115,16 +106,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View view) {
-        if(view==buttonRegister)
+    public void onClick(View v) {
+        if(v==buttonSignIn)
         {
-            registerUser();
+            hideSoftKeyboard();
+            userLogin();
         }
-        if(view==textViewSignIn)
+        if(v == textViewSignUp)
         {
-            //Will open login activity here
-            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            startActivity(new Intent(this, RegistrationActivity.class));
         }
-
     }
 }
