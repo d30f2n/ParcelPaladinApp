@@ -137,15 +137,16 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                         if(task.isSuccessful())
                         {
                             Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-//                            FirebaseUser user = firebaseAuth.getCurrentUser();
-//                            mDatabase = FirebaseDatabase.getInstance().getReference("users");
-//                            mDatabase.child(user.getUid());
-//                            UserInformation userInformation = new UserInformation(name);
-//                            mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
-//                            mDatabase.child("Name").setValue(name);
-//                            mDatabase.child("Email").setValue(user.getEmail());
-//                            mDatabase.child("trackingNumbers");
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            mDatabase = FirebaseDatabase.getInstance().getReference("users");
+                            mDatabase.child(user.getUid());
+                            UserInformation userInformation = new UserInformation(name);
+                            mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
+                            mDatabase.child("Name").setValue(name);
+                            mDatabase.child("Email").setValue(user.getEmail());
+                            mDatabase.child("trackingNumbers");
                             finish();
+
                             Intent intent = new Intent(getApplicationContext(), UserQRActivity.class);
                             intent.putExtra("EMAIL", email);
                             intent.putExtra("PASSWORD", password);
@@ -166,8 +167,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         if(view==textViewRegister)
         {
             //SWITCH THESE FUNCTIONS FOR TESTING
-//            registerUser();
-            fakeregister();
+            registerUser();
+//            fakeregister();
         }
         if(view==textViewSignIn)
         {
