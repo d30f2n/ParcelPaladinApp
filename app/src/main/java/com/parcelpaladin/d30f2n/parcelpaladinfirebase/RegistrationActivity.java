@@ -144,7 +144,11 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
                             mDatabase.child("Name").setValue(name);
                             mDatabase.child("Email").setValue(user.getEmail());
-                            mDatabase.child("trackingNumbers");
+
+                            mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid()+"/trackingNumbers");
+                            String id = mDatabase.push().getKey();
+                            mDatabase.child(id).setValue(user.getUid());
+
                             finish();
 
                             Intent intent = new Intent(getApplicationContext(), UserQRActivity.class);
