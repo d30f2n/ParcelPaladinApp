@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".RegStep1Activity" />
+        <activity android:name=".UserQRActivity" />
+        <activity android:name=".AccountSyncActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package com.parcelpaladin.d30f2n.parcelpaladinfirebase;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button buttonSignIn;
+    private TextView textViewSignInButton;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewSignUp;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonSignIn = (Button) findViewById(R.id.buttonSignIn);
+        textViewSignInButton = (TextView) findViewById(R.id.textViewSignInButton);
         textViewSignUp = (TextView) findViewById(R.id.textViewSignUp);
         progressBar = (ProgressBar) findViewById(R.id.progressLogin);
 
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        buttonSignIn.setOnClickListener(this);
+        textViewSignInButton.setOnClickListener(this);
         textViewSignUp.setOnClickListener(this);
 
     }
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v==buttonSignIn)
+        if(v==textViewSignInButton)
         {
             hideSoftKeyboard();
             userLogin();

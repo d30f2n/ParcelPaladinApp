@@ -11,13 +11,15 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
-    private TextView textViewUserEmail;
     private Button buttonLogout;
 
     DatabaseReference databaseReference;
@@ -43,8 +45,27 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-
+        final TextView textViewUserEmail;
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
+
+        final String userID = user.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users/" + userID + "/Name");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String firstname = null;
+                if(dataSnapshot.getValue() != null){
+                    firstname = dataSnapshot.getValue().toString().split(" ")[0];
+                }
+                textViewUserEmail.setText("Welcome " + firstname);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         textViewUserEmail.setText("Welcome " +user.getEmail());
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
 

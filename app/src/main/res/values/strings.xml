@@ -20,6 +20,18 @@
 
     <string name="regWelcome">Welcome!</string>
     <string name="regIntro">Thanks for setting up your account! Let\'s start off with some basic account info.</string>
+    <string name="regBegin">To begin, please plug in your new Parcel Paladin Box and wait for a display to appear on the screen.</string>
+    <string name="boxIDStep">When your box ID shows up, type it in here!</string>
+    <string name="boxID">Box ID</string>
+
+    <string name="great">Great!</string>
+    <string name="nextStep">Alright! Now, to connect your account to your locker, please scan this code on your box.</string>
+    <string name="scanDone">When the box says \"User added,\" go ahead and press finish.</string>
+    <string name="finish">Finish!</string>
+    <string name="qrCodeImage">qrCodeImage</string>
+    <string name="AccountSyncWait">Please wait while we sync your account</string>
+    <string name="SyncSuccessful">Sync Successful!</string>
+    <!--<string name=""></string>-->
     <!--<string name=""></string>-->
     <!--<string name=""></string>-->
     <!--<string name=""></string>-->
