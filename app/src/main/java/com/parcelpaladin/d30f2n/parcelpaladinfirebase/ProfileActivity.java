@@ -37,17 +37,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.user){
-            Toast.makeText(this, "User Activity", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(ProfileActivity.this, RegistrationActivity.class);
-            startActivity(intent);
-        }
+//        if(item.getItemId() == R.id.user){
+//            Toast.makeText(this, "User Activity", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(ProfileActivity.this, RegistrationActivity.class);
+//            startActivity(intent);
+//        }
         if(item.getItemId() == R.id.setting){
             Toast.makeText(this, "Setting Activity", Toast.LENGTH_SHORT).show();
         }
-        if(item.getItemId() == R.id.login){
-            Toast.makeText(this, "Login Activity", Toast.LENGTH_SHORT).show();
-        }
+
         if(item.getItemId() == R.id.logout){
             Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
             firebaseAuth.signOut();
