@@ -31,21 +31,21 @@ public class test extends AppCompatActivity {
         DatabaseReference mine = ref.child("parcelpal-sjsu").child("users").child("-LAUrLPM7BZcG3FenoS2");
         lst=(ListView)findViewById(R.id.listView);
 
-        mine.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String email = dataSnapshot.getValue(String.class);
-                //do what you want with the email
-                testemail = email;
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        mine.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                String email = dataSnapshot.getValue(String.class);
+//                //do what you want with the email
+//                testemail = email;
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, months);
         lst.setAdapter(arrayAdapter);
