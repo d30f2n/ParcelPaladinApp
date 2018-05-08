@@ -23,7 +23,8 @@
         <activity android:name=".RegStep1Activity" />
         <activity android:name=".UserQRActivity" />
         <activity android:name=".AccountSyncActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".TrackingActivity"></activity>
     </application>
 
 </manifest>
