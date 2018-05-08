@@ -28,6 +28,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private EditText editTextTracking;
     private Button buttonSave;
+    private Button buttonTracking;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,9 +97,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         textViewUserEmail.setText("Welcome " +user.getEmail());
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
+        buttonTracking = (Button) findViewById(R.id.buttonTracking);
 
         buttonLogout.setOnClickListener(this);
         buttonSave.setOnClickListener(this);
+        buttonTracking.setOnClickListener(this);
     }
 
     private void saveTracking()
@@ -128,6 +131,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if(v == buttonSave)
         {
             saveTracking();
+        }
+        if(v == buttonTracking)
+        {
+            finish();
+            startActivity(new Intent(this, test.class));
         }
     }
 }

@@ -31,6 +31,7 @@
     <string name="qrCodeImage">qrCodeImage</string>
     <string name="AccountSyncWait">Please wait while we sync your account</string>
     <string name="SyncSuccessful">Sync Successful!</string>
+    <string name="title_activity_track">Track</string>
     <!--<string name=""></string>-->
     <!--<string name=""></string>-->
     <!--<string name=""></string>-->

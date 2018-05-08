@@ -14,8 +14,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/textViewUserEmail"
@@ -45,9 +47,15 @@
             android:layout_height="wrap_content"
             android:text="Save" />
 
+        <Button
+            android:id="@+id/buttonTracking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Tracking" />
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="171dp" />
 
         <Button
             android:id="@+id/buttonLogout"
@@ -55,5 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Log out" />
+
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
