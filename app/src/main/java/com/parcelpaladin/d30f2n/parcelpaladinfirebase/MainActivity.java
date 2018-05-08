@@ -1,63 +1,35 @@
 package com.parcelpaladin.d30f2n.parcelpaladinfirebase;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
-    private TextView textViewSignInButton;
-    private EditText editTextEmail;
-    private EditText editTextPassword;
-    private TextView textViewSignUp;
-    private ProgressBar progressBar;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth firebaseAuth;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    private TextView textViewWelcomeName;
+    private ImageView imageViewUnlock;
+    private ImageView imageViewTracking;
+    private ImageView imageViewLogs;
 
-        firebaseAuth = FirebaseAuth.getInstance();
+    DatabaseReference databaseReference;
 
-        if(firebaseAuth.getCurrentUser() != null)
-        {
-            //profile activity here
-            finish();
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-        }
-
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        textViewSignInButton = (TextView) findViewById(R.id.textViewSignInButton);
-        textViewSignUp = (TextView) findViewById(R.id.textViewSignUp);
-        progressBar = (ProgressBar) findViewById(R.id.progressLogin);
-
-        progressBar.setVisibility(View.INVISIBLE);
-
-
-
-        textViewSignInButton.setOnClickListener(this);
-        textViewSignUp.setOnClickListener(this);
-
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
@@ -77,68 +49,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(item.getItemId() == R.id.logout){
             Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
+            firebaseAuth.signOut();
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void hideSoftKeyboard() {
-        if(getCurrentFocus()!=null) {
-            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        }
-    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-    private void userLogin()
-    {
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        if(TextUtils.isEmpty(email))
+        if(firebaseAuth.getCurrentUser() == null)
         {
-            //email is empty
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(TextUtils.isEmpty(password))
-        {
-            //password is empty
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
-            return;
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
         }
 
-        progressBar.setVisibility(View.VISIBLE);
+        FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful())
-                        {
-                            //start profile activity
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        }
-                        else
-                        {
-                            progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(MainActivity.this, "Your email and/or password is incorrect. Try again.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+        final String userID = user.getUid();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users/" + userID + "/Name");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String firstname = null;
+                if(dataSnapshot.getValue() != null){
+                    firstname = dataSnapshot.getValue().toString().split(" ")[0];
+                }
+                textViewWelcomeName.setText("Welcome " + firstname);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        imageViewUnlock = findViewById(R.id.imageViewUnlock);
+        imageViewTracking = findViewById(R.id.imageViewTracking);
+        imageViewLogs = findViewById(R.id.imageViewLogs);
+        textViewWelcomeName = findViewById(R.id.textViewWelcomeName);
     }
 
     @Override
     public void onClick(View v) {
-        if(v==textViewSignInButton)
-        {
-            hideSoftKeyboard();
-            userLogin();
+        if(v == imageViewUnlock) {
+            Toast.makeText(this, "Box has been unlocked", Toast.LENGTH_SHORT).show();
         }
-        if(v == textViewSignUp)
-        {
-            finish();
-            startActivity(new Intent(this, RegistrationActivity.class));
+        if(v == imageViewTracking) {
+            Toast.makeText(this, "Add or view your tracking numbers", Toast.LENGTH_SHORT).show();
+        }
+        if(v == imageViewLogs) {
+            Toast.makeText(this, "See when your box was opened", Toast.LENGTH_SHORT).show();
         }
     }
 }

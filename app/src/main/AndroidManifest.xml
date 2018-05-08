@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,12 @@
         <activity android:name=".RegStep1Activity" />
         <activity android:name=".UserQRActivity" />
         <activity android:name=".AccountSyncActivity" />
+<<<<<<< HEAD
         <activity android:name=".test"></activity>
+=======
+        <activity android:name=".MainActivity" />
+        <activity android:name=".TrackingActivity"></activity>
+>>>>>>> f2f1716aedcf8dc99722a38c5aba8b65d3cda090
     </application>
 
 </manifest>
