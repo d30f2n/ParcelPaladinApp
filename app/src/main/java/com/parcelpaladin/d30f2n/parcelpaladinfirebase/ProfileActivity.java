@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
             firebaseAuth.signOut();
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -67,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if(firebaseAuth.getCurrentUser() == null)
         {
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
 
         editTextTracking = (EditText) findViewById(R.id.editTextTracking);
@@ -124,7 +124,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         {
             firebaseAuth.signOut();
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
 
         if(v == buttonSave)

@@ -52,7 +52,7 @@ public class AccountSyncActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent i=new Intent(getApplicationContext(),ProfileActivity.class);
+                        Intent i=new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(i);
                     }
                 }, 3000);

@@ -177,7 +177,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         if(view==textViewSignIn)
         {
             //Will open login activity here
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
 
     }
