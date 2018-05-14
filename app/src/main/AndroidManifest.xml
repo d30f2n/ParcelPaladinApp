@@ -24,7 +24,10 @@
         <activity android:name=".UserQRActivity" />
         <activity android:name=".AccountSyncActivity" />
         <activity android:name=".test"></activity>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 21113ed14de096db630be829ea29147bb77fe22b
         <activity android:name=".MainActivity" />
         <activity android:name=".TrackingActivity"></activity>
     </application>

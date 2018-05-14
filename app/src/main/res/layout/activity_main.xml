@@ -22,28 +22,31 @@
         android:id="@+id/imageViewUnlock"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:contentDescription="lockpicture"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@id/imageViewTracking"
         app:layout_constraintTop_toBottomOf="@+id/textViewWelcomeName"
-        app:srcCompat="@drawable/main_unlock"
-        android:scaleType="fitXY" />
+        app:srcCompat="@drawable/main_unlock" />
 
     <ImageView
         android:id="@+id/imageViewTracking"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:contentDescription="trackingpicture"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/imageViewLogs"
         app:layout_constraintTop_toBottomOf="@+id/imageViewUnlock"
-        app:srcCompat="@drawable/main_entertracking"
-        android:scaleType="fitXY"/>
+        app:srcCompat="@drawable/main_entertracking" />
 
     <ImageView
         android:id="@+id/imageViewLogs"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:contentDescription="logspicture"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewTracking"
-        app:srcCompat="@drawable/main_seelog"
-        android:scaleType="fitXY"/>
+        app:srcCompat="@drawable/main_seelog" />
 
     <TextView
         android:id="@+id/textViewUnlockText"
@@ -77,5 +80,6 @@
         android:textAppearance="@android:style/TextAppearance.Material.Title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageViewLogs" />
+
 </android.support.constraint.ConstraintLayout>
 

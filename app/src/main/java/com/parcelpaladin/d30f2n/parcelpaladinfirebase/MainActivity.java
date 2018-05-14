@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
 
@@ -38,11 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        if(item.getItemId() == R.id.user){
-//            Toast.makeText(this, "User Activity", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
-//            startActivity(intent);
-//        }
         if(item.getItemId() == R.id.setting){
             Toast.makeText(this, "Setting Activity", Toast.LENGTH_SHORT).show();
         }
@@ -60,6 +56,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        imageViewUnlock = findViewById(R.id.imageViewUnlock);
+        imageViewTracking = findViewById(R.id.imageViewTracking);
+        imageViewLogs = findViewById(R.id.imageViewLogs);
+        textViewWelcomeName = findViewById(R.id.textViewWelcomeName);
+
+        imageViewUnlock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Box has been unlocked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        imageViewTracking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(getApplicationContext(), test.class));
+            }
+        });
+
+        imageViewLogs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "See when your box was opened", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -89,22 +112,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        imageViewUnlock = findViewById(R.id.imageViewUnlock);
-        imageViewTracking = findViewById(R.id.imageViewTracking);
-        imageViewLogs = findViewById(R.id.imageViewLogs);
-        textViewWelcomeName = findViewById(R.id.textViewWelcomeName);
+
+
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v == imageViewUnlock) {
-            Toast.makeText(this, "Box has been unlocked", Toast.LENGTH_SHORT).show();
-        }
-        if(v == imageViewTracking) {
-            Toast.makeText(this, "Add or view your tracking numbers", Toast.LENGTH_SHORT).show();
-        }
-        if(v == imageViewLogs) {
-            Toast.makeText(this, "See when your box was opened", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        if(v == imageViewUnlock) {
+//            Toast.makeText(this, "Box has been unlocked", Toast.LENGTH_SHORT).show();
+//        }
+//        if(v == imageViewTracking) {
+//            finish();
+//            startActivity(new Intent(this, test.class));
+//        }
+//        if(v == imageViewLogs) {
+//            Toast.makeText(this, "See when your box was opened", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }
