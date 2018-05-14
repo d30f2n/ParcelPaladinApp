@@ -50,8 +50,8 @@ public class test extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 //                Map<String, Object> td = new HashMap<>();
                 for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-//                String email = dataSnapshot.getValue().toString();
-                    String email = dataSnapshot.getValue(String.class);
+                String email = dataSnapshot.getValue().toString();
+//                    String email = dataSnapshot.getValue(String.class);
 //                    td = (HashMap<String,Object>) dataSnapshot.getValue();
 
 
