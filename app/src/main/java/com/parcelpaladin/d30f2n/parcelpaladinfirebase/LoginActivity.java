@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+<<<<<<< HEAD
 //        if(item.getItemId() == R.id.user){
 //            Toast.makeText(this, "User Activity", Toast.LENGTH_SHORT).show();
 //            Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
@@ -79,6 +80,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(item.getItemId() == R.id.setting){
             Toast.makeText(this, "Setting Activity", Toast.LENGTH_SHORT).show();
         }
+=======
+        if(item.getItemId() == R.id.setting){
+            Toast.makeText(this, "Setting Activity", Toast.LENGTH_SHORT).show();
+        }
+>>>>>>> a1cec412ca66532f1730780098a0de250033014a
         if(item.getItemId() == R.id.logout){
             Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
         }

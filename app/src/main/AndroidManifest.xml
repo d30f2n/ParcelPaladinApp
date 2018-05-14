@@ -26,7 +26,10 @@
         <activity android:name=".test" />
         <activity android:name=".MainActivity" />
         <activity android:name=".TrackingActivity" />
+<<<<<<< HEAD
         <activity android:name=".Status"></activity>
+=======
+>>>>>>> a1cec412ca66532f1730780098a0de250033014a
     </application>
 
 </manifest>
