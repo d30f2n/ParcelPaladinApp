@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
         imageViewTracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                startActivity(new Intent(getApplicationContext(), test.class));
+//                finish();
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             }
         });
 

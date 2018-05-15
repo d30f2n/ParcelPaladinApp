@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
-    private Button buttonLogout;
+//    private Button buttonLogout;
 
     DatabaseReference databaseReference;
 
@@ -96,10 +96,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         });
 
         textViewUserEmail.setText("Welcome " +user.getEmail());
-        buttonLogout = (Button) findViewById(R.id.buttonLogout);
+//        buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonTracking = (Button) findViewById(R.id.buttonTracking);
 
-        buttonLogout.setOnClickListener(this);
+//        buttonLogout.setOnClickListener(this);
         buttonSave.setOnClickListener(this);
         buttonTracking.setOnClickListener(this);
     }
@@ -121,12 +121,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if(v == buttonLogout)
-        {
-            firebaseAuth.signOut();
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));
-        }
+//        if(v == buttonLogout)
+//        {
+//            firebaseAuth.signOut();
+//            finish();
+//            startActivity(new Intent(this, LoginActivity.class));
+//        }
 
         if(v == buttonSave)
         {
@@ -134,7 +134,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
         if(v == buttonTracking)
         {
-            finish();
+//            finish();
             startActivity(new Intent(this, test.class));
         }
     }
