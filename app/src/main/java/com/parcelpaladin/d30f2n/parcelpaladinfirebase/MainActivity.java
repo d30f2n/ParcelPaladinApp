@@ -1,7 +1,12 @@
 package com.parcelpaladin.d30f2n.parcelpaladinfirebase;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
+import android.os.Build;
+import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +24,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import static com.google.android.gms.internal.zzbgp.NULL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         imageViewUnlock = findViewById(R.id.imageViewUnlock);
         imageViewTracking = findViewById(R.id.imageViewTracking);
         imageViewLogs = findViewById(R.id.imageViewLogs);
@@ -65,17 +74,33 @@ public class MainActivity extends AppCompatActivity {
         imageViewUnlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibe.vibrate(VibrationEffect.createOneShot(250,255));
+
+                }else{
+                    //deprecated in API 26
+                    vibe.vibrate(250);
+                }
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 Toast.makeText(getApplicationContext(), "Box has been unlocked", Toast.LENGTH_SHORT).show();
                 databaseReference = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
                 databaseReference.child("LockStatus").setValue(1);
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        databaseReference.child("LockStatus").setValue(0);
+                    }
+                }, 10000);
+
+
             }
         });
 
         imageViewTracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                finish();
                 startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             }
         });
