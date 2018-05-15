@@ -147,16 +147,26 @@ public class test extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final String details = lst.getAdapter().getItem(position).toString();
+                String ups = new String("9400");
 //                for (int i = 0; i < 50; i ++) {
 //                    if (position == i) {
-//                        Intent myintent = new Intent(view.getContext(), Status.class);
-//                        myintent.putExtra( "puzzle",  details );
-//                        startActivityForResult(myintent, i);
+                        if(details.toLowerCase().contains(ups.toLowerCase()))
+                        {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                                    Uri.parse("https://tools.usps.com/go/TrackConfirmAction?tLabels=" + details));
+                            startActivity(browserIntent);
+                        }
+                            else{
+//                            Intent myintent = new Intent(view.getContext(), Status.class);
+//                            myintent.putExtra("puzzle", details);
+//                            startActivityForResult(myintent, i);
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                                    Uri.parse("https://google.com/search?q=" + details));
+                            startActivity(browserIntent);
+                        }
 //                    }
 //                }
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://tools.usps.com/go/TrackConfirmAction?tLabels=" + details));
-                startActivity(browserIntent);
+
             }
         });
 
