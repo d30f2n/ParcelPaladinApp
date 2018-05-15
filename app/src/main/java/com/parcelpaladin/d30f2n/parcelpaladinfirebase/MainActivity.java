@@ -65,7 +65,10 @@ public class MainActivity extends AppCompatActivity {
         imageViewUnlock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
                 Toast.makeText(getApplicationContext(), "Box has been unlocked", Toast.LENGTH_SHORT).show();
+                databaseReference = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
+                databaseReference.child("LockStatus").setValue(1);
             }
         });
 
@@ -112,21 +115,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        if(v == imageViewUnlock) {
-//            Toast.makeText(this, "Box has been unlocked", Toast.LENGTH_SHORT).show();
-//        }
-//        if(v == imageViewTracking) {
-//            finish();
-//            startActivity(new Intent(this, test.class));
-//        }
-//        if(v == imageViewLogs) {
-//            Toast.makeText(this, "See when your box was opened", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 }
