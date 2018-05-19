@@ -20,14 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".RegStep1Activity" />
+        <activity android:name=".TrackingActivity" />
         <activity android:name=".UserQRActivity" />
         <activity android:name=".AccountSyncActivity" />
-        <activity android:name=".test" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".TrackingActivity" />
-        <activity android:name=".Status"></activity>
 
     </application>
 

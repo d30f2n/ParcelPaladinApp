@@ -45,7 +45,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         {
             //user already logged in
             finish();
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
 
         textViewRegister = (TextView) findViewById(R.id.textViewRegister);
@@ -140,15 +140,11 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             mDatabase = FirebaseDatabase.getInstance().getReference("users");
                             mDatabase.child(user.getUid());
-                            UserInformation userInformation = new UserInformation(name);
+//                            UserInformation userInformation = new UserInformation(name);
                             mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
                             mDatabase.child("Name").setValue(name);
                             mDatabase.child("Email").setValue(user.getEmail());
                             mDatabase.child("LockStatus").setValue(0);
-
-                            mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid()+"/trackingNumbers");
-                            String id = mDatabase.push().getKey();
-                            mDatabase.child(id).setValue(user.getUid());
 
                             finish();
 
