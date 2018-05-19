@@ -40,18 +40,18 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.main,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.setting){
-            Toast.makeText(this, "Setting Activity", Toast.LENGTH_SHORT).show();
+        if(item.getItemId() == R.id.main){
+            startActivity(new Intent(this, MainActivity.class));
         }
 
         if(item.getItemId() == R.id.logout){
-            Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
             firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));

@@ -57,36 +57,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         textViewSignUp.setOnClickListener(this);
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-//        if(item.getItemId() == R.id.user){
-//            Toast.makeText(this, "User Activity", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
-//            startActivity(intent);
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu,menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+////        if(item.getItemId() == R.id.user){
+////            Toast.makeText(this, "User Activity", Toast.LENGTH_SHORT).show();
+////            Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+////            startActivity(intent);
+////        }
+//
+////        if(item.getItemId() == R.id.login){
+////            Toast.makeText(this, "Login Activity", Toast.LENGTH_SHORT).show();
+////        }
+//
+//        if(item.getItemId() == R.id.logout){
+//            Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
 //        }
-        if(item.getItemId() == R.id.setting){
-            Toast.makeText(this, "Setting Activity", Toast.LENGTH_SHORT).show();
-        }
-//        if(item.getItemId() == R.id.login){
-//            Toast.makeText(this, "Login Activity", Toast.LENGTH_SHORT).show();
-//        }
-        if(item.getItemId() == R.id.setting){
-            Toast.makeText(this, "Setting Activity", Toast.LENGTH_SHORT).show();
-        }
-        if(item.getItemId() == R.id.setting){
-            Toast.makeText(this, "Setting Activity", Toast.LENGTH_SHORT).show();
-        }
-        if(item.getItemId() == R.id.logout){
-            Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public void hideSoftKeyboard() {
         if(getCurrentFocus()!=null) {
