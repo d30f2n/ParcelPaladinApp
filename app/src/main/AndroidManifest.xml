@@ -23,6 +23,7 @@
         <activity android:name=".TrackingActivity" />
         <activity android:name=".UserQRActivity" />
         <activity android:name=".AccountSyncActivity" />
+        <activity android:name=".TrackListActivity" />
         <activity android:name=".MainActivity" />
 
     </application>
