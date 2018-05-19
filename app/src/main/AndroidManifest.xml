@@ -25,7 +25,8 @@
         <activity android:name=".AccountSyncActivity" />
         <activity android:name=".TrackListActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".LogActivity"></activity>
+        <activity android:name=".LogActivity" />
+        <activity android:name=".FailedLogActivity"/>
     </application>
 
 </manifest>

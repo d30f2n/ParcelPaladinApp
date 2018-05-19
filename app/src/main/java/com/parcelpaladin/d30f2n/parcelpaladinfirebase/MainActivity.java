@@ -2,7 +2,6 @@ package com.parcelpaladin.d30f2n.parcelpaladinfirebase;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Build;
 import android.os.Handler;
 import android.os.VibrationEffect;
@@ -12,7 +11,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     private TextView textViewWelcomeName;
-    private ImageView imageViewUnlock;
-    private ImageView imageViewTracking;
-    private ImageView imageViewLogs;
+
 
     DatabaseReference databaseReference;
 
@@ -60,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ImageView imageViewUnlock;
+        ImageView imageViewTracking;
+        ImageView imageViewLogs;
 
         final Vibrator vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 

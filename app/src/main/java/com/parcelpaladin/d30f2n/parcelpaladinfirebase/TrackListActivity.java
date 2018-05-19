@@ -74,35 +74,6 @@ public class TrackListActivity extends AppCompatActivity {
         textViewNoTracking = findViewById(R.id.textViewNoTracking);
 
 
-
-//        mine.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-////                Map<String, Object> td = new HashMap<>();
-//                for (DataSnapshot childSnapshot: dataSnapshot.getChildren()) {
-//                String email = dataSnapshot.getValue().toString();
-////                    String email = dataSnapshot.getValue(String.class);
-////                    td = (HashMap<String,Object>) dataSnapshot.getValue();
-//
-//
-//                //do what you want with the email
-////                Map<String, String> map = dataSnapshot.getValue(Map.class);
-////                String email = (String) map.get
-//
-//                usernames.add(String.valueOf(dataSnapshot.getValue()));
-//                }
-//
-//                arrayAdapter.notifyDataSetChanged();
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-
-
         mine.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

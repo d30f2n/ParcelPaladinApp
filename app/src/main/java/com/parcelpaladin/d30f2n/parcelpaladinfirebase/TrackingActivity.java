@@ -1,9 +1,11 @@
 package com.parcelpaladin.d30f2n.parcelpaladinfirebase;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +24,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +40,7 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
     private Button buttonSave;
     private ListView listViewTracking;
     private TextView textViewNoTracking;
+    private TextView textViewScan;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,7 +55,6 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if(item.getItemId() == R.id.logout){
-//            Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
             firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));
@@ -63,6 +66,8 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
+
+        textViewScan = findViewById(R.id.textViewScan);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -151,6 +156,21 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
+        final Activity activity = this;
+        textViewScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//            Toast.makeText(getApplicationContext(), "Barcode reader should run", Toast.LENGTH_LONG).show();
+            IntentIntegrator integrator = new IntentIntegrator(activity);
+            integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+            integrator.setPrompt("Scan");
+            integrator.setCameraId(0);
+            integrator.setBeepEnabled(false);
+            integrator.setBarcodeImageEnabled(false);
+            integrator.initiateScan();
+            }
+        });
+
     }
 
     private void saveTracking()
@@ -164,8 +184,8 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
         String id = databaseReference.push().getKey();
         databaseReference.child(id).setValue(tracking);
 
+        editTextTracking.setText("");
         Toast.makeText(this, "Tracking number entered.", Toast.LENGTH_LONG).show();
-
     }
 
     @Override
@@ -173,6 +193,25 @@ public class TrackingActivity extends AppCompatActivity implements View.OnClickL
         if(v == buttonSave)
         {
             saveTracking();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
+            if(result.getContents() == null) {
+                Log.d("TrackingActivity", "Cancelled scan");
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                Log.d("TrackingActivity", "Scanned");
+//                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                editTextTracking.setText(result.getContents());
+                saveTracking();
+            }
+        } else {
+            // This is important, otherwise the result will not be passed to the fragment
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

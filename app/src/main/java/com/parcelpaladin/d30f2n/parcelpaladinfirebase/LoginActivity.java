@@ -43,11 +43,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
 
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        textViewSignInButton = (TextView) findViewById(R.id.textViewSignInButton);
-        textViewSignUp = (TextView) findViewById(R.id.textViewSignUp);
-        progressBar = (ProgressBar) findViewById(R.id.progressLogin);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        textViewSignInButton = findViewById(R.id.textViewSignInButton);
+        textViewSignUp = findViewById(R.id.textViewSignUp);
+        progressBar = findViewById(R.id.progressLogin);
 
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -57,29 +57,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         textViewSignUp.setOnClickListener(this);
 
     }
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu,menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-////        if(item.getItemId() == R.id.user){
-////            Toast.makeText(this, "User Activity", Toast.LENGTH_SHORT).show();
-////            Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
-////            startActivity(intent);
-////        }
-//
-////        if(item.getItemId() == R.id.login){
-////            Toast.makeText(this, "Login Activity", Toast.LENGTH_SHORT).show();
-////        }
-//
-//        if(item.getItemId() == R.id.logout){
-//            Toast.makeText(this, "Logout Activity", Toast.LENGTH_SHORT).show();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     public void hideSoftKeyboard() {
         if(getCurrentFocus()!=null) {

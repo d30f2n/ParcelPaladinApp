@@ -5,10 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,11 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogActivity extends AppCompatActivity {
+public class FailedLogActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
-
-
 
 
     @Override
@@ -51,10 +47,9 @@ public class LogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log);
+        setContentView(R.layout.activity_failed_log);
 
-        ListView listViewUnlockLogs;
-        TextView textViewOpenFailed;
+        ListView listViewFailed;
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -66,44 +61,31 @@ public class LogActivity extends AppCompatActivity {
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-
-        final List<String> opened = new ArrayList<>();
-        textViewOpenFailed = findViewById(R.id.textViewOpenFailed);
-
-        textViewOpenFailed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FailedLogActivity.class));
-            }
-        });
-
+        final List<String> failed = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
-        DatabaseReference trackList = ref.child(user.getUid()).child("unlockLogs");
+        DatabaseReference failedList = ref.child(user.getUid()).child("failedAttempts");
 
-        listViewUnlockLogs=findViewById(R.id.listViewUnlockLogs);
+        listViewFailed=findViewById(R.id.listViewFailedAttempts);
 
+        final ArrayAdapter<String> failedArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, failed);
+        listViewFailed.setAdapter(failedArrayAdapter);
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, opened);
-        listViewUnlockLogs.setAdapter(arrayAdapter);
-
-
-        trackList.addChildEventListener(new ChildEventListener() {
+        failedList.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
                 String value = dataSnapshot.getValue(String.class);
 
-                opened.add(value);
-                arrayAdapter.notifyDataSetChanged();
+                failed.add(value);
+                failedArrayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 String value = dataSnapshot.getValue(String.class);
 
-                opened.add(value);
-                arrayAdapter.notifyDataSetChanged();
+                failed.add(value);
+                failedArrayAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -121,10 +103,5 @@ public class LogActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
-
-
 }
