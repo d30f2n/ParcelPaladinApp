@@ -108,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
         imageViewLogs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "See when your box was opened", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "See when your box was opened", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), LogActivity.class));
+
             }
         });
 
