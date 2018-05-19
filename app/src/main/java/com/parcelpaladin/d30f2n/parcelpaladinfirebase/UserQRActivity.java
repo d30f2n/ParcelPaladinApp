@@ -16,7 +16,6 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class UserQRActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private ImageView imageViewQRCode;
     private TextView textViewFinish;
 
     @Override
@@ -24,13 +23,15 @@ public class UserQRActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_qr);
 
+        ImageView imageViewQRCode;
+
         String email = getIntent().getStringExtra("EMAIL");
         String password = getIntent().getStringExtra("PASSWORD");
 
         String identifier = email + "," + password;
 
-        imageViewQRCode = (ImageView) findViewById(R.id.imageViewQRCode);
-        textViewFinish = (TextView) findViewById(R.id.textViewFinish);
+        imageViewQRCode = findViewById(R.id.imageViewQRCode);
+        textViewFinish = findViewById(R.id.textViewFinish);
 
         textViewFinish.setOnClickListener(this);
 

@@ -4,116 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.parcelpaladin.d30f2n.parcelpaladinfirebase.MainActivity"
-    android:background="@drawable/gradient">
+    android:background="@drawable/gradient"
+    tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textViewWelcome"
+        android:id="@+id/textViewWelcomeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/welcome"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Welcome: name!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageViewLogo"
-        android:layout_width="0dp"
+        android:id="@+id/imageViewUnlock"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/appLogo"
-        android:src="@drawable/pplogo"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWelcome" />
+        android:contentDescription="lockpicture"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@id/imageViewTracking"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWelcomeName"
+        app:srcCompat="@drawable/main_unlock" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center_horizontal"
-        android:text="@string/loginText"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageView
+        android:id="@+id/imageViewTracking"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:contentDescription="trackingpicture"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewLogs"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUnlock"
+        app:srcCompat="@drawable/main_entertracking" />
 
-    <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:hint="@string/loginEmail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextEmail"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:hint="@string/loginPassword"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSignUp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewSignUp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center_horizontal"
-        android:text="@string/noAccount"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/progressLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/progressLogin"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/textViewSignUp"
-        android:indeterminate="true"
-        android:indeterminateTintMode="src_in"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSignInButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewSignInButton"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:background="@drawable/rectangle"
-        android:gravity="center"
-        android:text="@string/SignIn"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+    <ImageView
+        android:id="@+id/imageViewLogs"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:contentDescription="logspicture"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewTracking"
+        app:srcCompat="@drawable/main_seelog" />
+
+    <TextView
+        android:id="@+id/textViewUnlockText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Unlock your box"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewTracking"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewUnlock" />
+
+    <TextView
+        android:id="@+id/textViewTrackingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="View or add a tracking number"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewLogs"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewTracking" />
+
+    <TextView
+        android:id="@+id/textViewLogsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="View your logs"
+        android:textAppearance="@android:style/TextAppearance.Material.Title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewLogs" />
 
 </android.support.constraint.ConstraintLayout>
+

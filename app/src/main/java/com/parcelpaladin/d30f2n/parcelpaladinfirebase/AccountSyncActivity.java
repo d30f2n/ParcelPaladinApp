@@ -30,14 +30,14 @@ public class AccountSyncActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_sync);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBarSynching);
+        progressBar = findViewById(R.id.progressBarSynching);
 
-        textViewSyncing = (TextView) findViewById(R.id.textViewSyncing);
+        textViewSyncing = findViewById(R.id.textViewSyncing);
 
-        textViewSyncSuccess = (TextView) findViewById(R.id.textViewSyncSuccess);
+        textViewSyncSuccess = findViewById(R.id.textViewSyncSuccess);
 
 
-        imageViewCheckMark = (ImageView) findViewById(R.id.imageViewCheckMark);
+        imageViewCheckMark = findViewById(R.id.imageViewCheckMark);
 
 
         view1();
@@ -52,7 +52,7 @@ public class AccountSyncActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        Intent i=new Intent(getApplicationContext(),ProfileActivity.class);
+                        Intent i=new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(i);
                     }
                 }, 3000);

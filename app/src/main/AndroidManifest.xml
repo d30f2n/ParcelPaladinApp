@@ -3,6 +3,7 @@
     package="com.parcelpaladin.d30f2n.parcelpaladinfirebase">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,10 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".RegStep1Activity" />
+        <activity android:name=".TrackingActivity" />
         <activity android:name=".UserQRActivity" />
-        <activity android:name=".AccountSyncActivity"></activity>
+        <activity android:name=".AccountSyncActivity" />
+        <activity android:name=".TrackListActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LogActivity" />
+        <activity android:name=".FailedLogActivity"/>
     </application>
 
 </manifest>

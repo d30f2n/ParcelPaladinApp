@@ -45,17 +45,17 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         {
             //user already logged in
             finish();
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
 
-        textViewRegister = (TextView) findViewById(R.id.textViewRegister);
-        editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
-        editTextFullName = (EditText) findViewById(R.id.editTextFullName);
-        textViewSignIn = (TextView) findViewById(R.id.textViewSignIn);
+        textViewRegister = findViewById(R.id.textViewRegister);
+        editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
+        editTextFullName = findViewById(R.id.editTextFullName);
+        textViewSignIn = findViewById(R.id.textViewSignIn);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressRegister);
+        progressBar = findViewById(R.id.progressRegister);
         progressBar.setVisibility(View.INVISIBLE);
 
         textViewRegister.setOnClickListener(this);
@@ -140,14 +140,11 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             mDatabase = FirebaseDatabase.getInstance().getReference("users");
                             mDatabase.child(user.getUid());
-                            UserInformation userInformation = new UserInformation(name);
+//                            UserInformation userInformation = new UserInformation(name);
                             mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid());
                             mDatabase.child("Name").setValue(name);
                             mDatabase.child("Email").setValue(user.getEmail());
-
-                            mDatabase = FirebaseDatabase.getInstance().getReference("users/"+user.getUid()+"/trackingNumbers");
-                            String id = mDatabase.push().getKey();
-                            mDatabase.child(id).setValue(user.getUid());
+                            mDatabase.child("LockStatus").setValue(0);
 
                             finish();
 
@@ -177,7 +174,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         if(view==textViewSignIn)
         {
             //Will open login activity here
-            startActivity(new Intent(this, MainActivity.class));
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
         }
 
     }
